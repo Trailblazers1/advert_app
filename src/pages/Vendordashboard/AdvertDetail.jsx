@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const BookDetails = () => {
+const AdvertDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
   const bookId = params.id;
@@ -184,9 +184,8 @@ const BookDetails = () => {
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 };
 
-export default BookDetails;
+export default AdvertDetail;
