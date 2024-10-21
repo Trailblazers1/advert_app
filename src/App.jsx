@@ -3,9 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import DashboardLayouts from "./layouts/DashboardLayouts";
-import Overview from "./pages/Vendordashboard/Overview";
-import Adddetails from "./pages/Vendordashboard/Adddetails";
-import ProductDetails from "./pages/Vendordashboard/ProductDetails";
+import AddAdverts from "./pages/Vendordashboard/AddAdverts";
 import About from "./pages/About";
 import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +13,9 @@ import Ads from "./pages/Vendordashboard/Ads";
 import Verify from "./pages/Vendordashboard/Verify";
 import Settings from "./pages/Vendordashboard/Settings";
 import Reports from "./pages/Vendordashboard/Reports";
+import Overview from "./pages/Vendordashboard/Overview";
+import AdvertDetail from "./pages/Vendordashboard/AdvertDetail";
+ 
 
 function App() {
   const routter = createBrowserRouter([
@@ -43,13 +44,13 @@ function App() {
         },
 
         {
-          path: "add-details",
-          element: <Adddetails />,
+          path: "add-adverts",
+          element: <AddAdverts/>,
         },
 
         {
-          path: "product-details",
-          element: <ProductDetails />,
+          path: "advert-details",
+          element: <AdvertDetail/>,
         },
 
         {
