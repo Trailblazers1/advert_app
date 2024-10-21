@@ -9,7 +9,6 @@ import {
   FaUserCheck,
   FaSignOutAlt,
 } from "react-icons/fa";
-import pic from "../assets/images/Abu.jpg";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -24,99 +23,100 @@ const Sidebar = () => {
   const handleLogout = () => {};
 
   return (
-    <div
-      className={`flex flex-col w-64 h-screen p-5 pt-24 bg-gray-800 text-white shadow-xl transition-all duration-300 ${
-        isOpen ? "block" : "hidden"
-      } lg:block`}
-    >
+    <>
+      {/* Sidebar Toggle Button for Small Screens */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="mb-4 text-gray-300 lg:hidden"
+        className="text-gray-300 p-2 bg-gray-800 lg:hidden fixed top-4 left-4 z-50"
       >
         {isOpen ? "Close" : "Open"} Sidebar
       </button>
 
-      {/* Vendor Profile Section */}
-      <div className="flex flex-col items-center mb-8">
-        <img
-          src={vendor.profilePicture}
-          alt="Vendor Profile"
-          className="w-20 h-20 mb-3 rounded-full border-2 border-gray-400"
-        />
-        <h3 className="text-lg font-semibold">{vendor.name}</h3>
-        <p className="text-sm text-gray-400">Vendor</p>
-      </div>
+      {/* Sidebar */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white shadow-xl transform transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 z-40`}
+      >
+        {/* Vendor Profile Section */}
+        <div className="flex flex-col items-center pt-24 mb-8">
+          <img
+            src={vendor.profilePicture}
+            alt="Vendor Profile"
+            className="w-20 h-20 mb-3 rounded-full border-2 border-gray-400"
+          />
+          <h3 className="text-lg font-semibold">{vendor.name}</h3>
+          <p className="text-sm text-gray-400">Vendor</p>
+        </div>
 
-      <ul className="flex flex-col space-y-6">
-        <li>
-          <Link
-            className="flex items-center space-x-3 hover:text-gray-400"
-            to="/dashboard"
-          >
-            <FaChartLine size={20} />
-            <span>Dashboard Overview</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="flex items-center space-x-3 hover:text-gray-400"
-            to="/dashboard/ads"
-          >
-            <FaAd size={20} />
-            <span>Advertisements</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="flex items-center space-x-3 hover:text-gray-400"
-            to="/dashboard/reports"
-          >
-            <FaDollarSign size={20} />
-            <span>Sales</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="flex items-center space-x-3 hover:text-gray-400"
-            to="/dashboard/settings"
-          >
-            <FaCog size={20} />
-            <span>Settings</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="flex items-center space-x-3 hover:text-gray-400"
-            to="/dashboard/alerts"
-          >
-            <FaBell size={20} />
-            <span className="relative">
-              Alerts
-              <span className="absolute top-0 left-5 w-2 h-2 bg-red-500 rounded-full"></span>
-            </span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="flex items-center space-x-3 hover:text-gray-400"
-            to="/dashboard/verify"
-          >
-            <FaUserCheck size={20} />
-            <span>Get Verified</span>
-          </Link>
-        </li>
-        <li>
-          <button
-            onClick={handleLogout}
-            className="flex items-center space-x-3 hover:text-gray-400"
-            to="/logout"
-          >
-            <FaSignOutAlt size={20} />
-            <span>Logout</span>
-          </button>
-        </li>
-      </ul>
-    </div>
+        <ul className="flex flex-col space-y-6 px-4">
+          <li>
+            <Link
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300"
+              to="/dashboard"
+            >
+              <FaChartLine size={20} />
+              <span>Dashboard Overview</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300"
+              to="/dashboard/ads"
+            >
+              <FaAd size={20} />
+              <span>Advertisements</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300"
+              to="/dashboard/reports"
+            >
+              <FaDollarSign size={20} />
+              <span>Sales</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300"
+              to="/dashboard/settings"
+            >
+              <FaCog size={20} />
+              <span>Settings</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300 relative"
+              to="/dashboard/alerts"
+            >
+              <FaBell size={20} />
+              <span>Alerts</span>
+              <span className="absolute top-0 left-20 w-2 h-2 bg-red-500 rounded-full"></span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300"
+              to="/dashboard/verify"
+            >
+              <FaUserCheck size={20} />
+              <span>Get Verified</span>
+            </Link>
+          </li>
+          <li>
+            <button
+              onClick={handleLogout}
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300 w-full text-left"
+            >
+              <FaSignOutAlt size={20} />
+              <span>Logout</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 };
 

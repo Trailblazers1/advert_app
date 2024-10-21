@@ -1,4 +1,3 @@
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -15,7 +14,8 @@ import Settings from "./pages/Vendordashboard/Settings";
 import Reports from "./pages/Vendordashboard/Reports";
 import Overview from "./pages/Vendordashboard/Overview";
 import AdvertDetail from "./pages/Vendordashboard/AdvertDetail";
- 
+import ContactUs from "./pages/ContactUs";
+
 
 function App() {
   const routter = createBrowserRouter([
@@ -34,11 +34,15 @@ function App() {
     },
 
     {
+      path: "/contact",
+      element: <ContactUs />,
+    },
+
+    {
       path: "/dashboard",
       element: <DashboardLayouts />,
       children: [
         {
-
           index: true,
           element: <Overview />,
         },

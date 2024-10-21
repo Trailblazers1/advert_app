@@ -54,7 +54,7 @@ function About() {
                 efficient, and scalable for all.
               </p>
             </div>
-            <div className="md:w-1/2 mt-8 md:mt-0">
+            <div className="md:w-1/2 mt-8 md:mt-0 pr-5">
               <img
                 src={pic}
                 alt="Our Vision"
