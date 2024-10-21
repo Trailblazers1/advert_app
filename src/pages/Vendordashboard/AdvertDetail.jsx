@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 // import { BASE_URL } from "../../constants";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Category, Description } from "@mui/icons-material";
 
 const AdvertDetail = () => {
   const params = useParams();
@@ -16,29 +17,24 @@ const AdvertDetail = () => {
   const [feedbackMessage, setFeedbackMessage] = useState(""); // For feedback messages
   const [editedBook, setEditedBook] = useState({
     title: "",
-    icon: ""
-    // summary: "",
-    // year: "",
-    // genre: "",
-    // content: "",
-    // cover: "",
-    // author: "",
+    icon: "" ,
+    description: "",
+    Price: "",
+    Category: ""
   });
 
   // Fetch book details
   useEffect(() => {
     const fetchBook = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/todos ${bookId}`);
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`);
       setBookDetail(response.data);
       setEditedBook({
         title: response.data.title,
         icon: response.data.icon,
-        // summary: response.data.summary,
-        // year: response.data.year,
-        // genre: response.data.genre,
-        // content: response.data.content,
-        // cover: response.data.cover,
-        // author: response.data.author,
+       description : response.data.description,
+        Category: response.data.category,
+        Price: response.data.price,
+        
       }); // Pre-fill the edit form with existing data
     };
     fetchBook();
@@ -79,7 +75,11 @@ const AdvertDetail = () => {
     <div>
       <div className="flex ml-[10vw]">
         <div className="w-[20vw]">
-          <img src={bookDetail.icon} alt={bookDetail.title} />
+        <img src={`https://savefiles.org/${bookDetail.icon}?shareable_link=437`} alt="title" />
+          <h1>{bookDetail.title}</h1>
+          <h1>{bookDetail.description}</h1>
+          <h1>{bookDetail.category}</h1>
+          <h1>{bookDetail.price}</h1>
         </div>
 
         <div className="w-[40vw] m-10">
@@ -95,30 +95,30 @@ const AdvertDetail = () => {
                 className="border p-2 mb-2 w-full"
                 placeholder="Title"
               />
-              {/* <input
+               <input
                 type="text"
-                name="author"
+                name="decription"
                 value={editedBook.author}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
-                placeholder="Author"
+                placeholder="decription"
               />
               <textarea
-                name="summary"
+                name="category"
                 value={editedBook.summary}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
-                placeholder="Summary"
+                placeholder="category"
               />
               <input
                 type="text"
-                name="year"
+                name="price"
                 value={editedBook.year}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
-                placeholder="Year"
+                placeholder="price"
               />
-              <input
+              {/* <input
                 type="text"
                 name="genre"
                 value={editedBook.genre}
@@ -132,7 +132,7 @@ const AdvertDetail = () => {
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
                 placeholder="Content"
-              /> */}
+              />  */}
               <div className="flex space-x-4">
                 <button
                   onClick={updateBook}
