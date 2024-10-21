@@ -53,7 +53,7 @@ function App() {
         },
 
         {
-          path: "advert-details",
+          path: "adds/:id",
           element: <AdvertDetail/>,
         },
 

@@ -4,6 +4,9 @@ import Footer from "../components/Footer";
 import pic from "../pages/images/bg.webp";
 
 function Home() {
+
+
+
   return (
     <div
       className="min-h-screen overflow-x-hidden pt-20"
