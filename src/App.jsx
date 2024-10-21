@@ -1,53 +1,99 @@
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
-import Home from './pages/Home'
-import DashboardLayouts from './layouts/DashboardLayouts'
-import Overview from './pages/Vendordashboard/Overview'
-import Adddetails from './pages/Vendordashboard/Adddetails'
-import ProductDetails from './pages/Vendordashboard/ProductDetails'
-import About from './pages/About'
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import DashboardLayouts from "./layouts/DashboardLayouts";
+import Overview from "./pages/Vendordashboard/Overview";
+import Adddetails from "./pages/Vendordashboard/Adddetails";
+import ProductDetails from "./pages/Vendordashboard/ProductDetails";
+import About from "./pages/About";
+import { ToastContainer, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Sidebar from "./components/Sidebar";
+import Alerts from "./pages/Vendordashboard/Alerts";
+import Ads from "./pages/Vendordashboard/Ads";
+import Verify from "./pages/Vendordashboard/Verify";
+import Settings from "./pages/Vendordashboard/Settings";
+import Reports from "./pages/Vendordashboard/Reports";
 
 function App() {
   const routter = createBrowserRouter([
     {
       path: "/",
-      element: <Home />
+      element: <Home />,
     },
     {
       path: "/about",
-      element: <About/>
+      element: <About />,
     },
-  
 
-  {
+    {
+      path: "/sidebar",
+      element: <Sidebar />,
+    },
+
+    {
       path: "/dashboard",
       element: <DashboardLayouts />,
       children: [
         {
           index: true,
-          element: <Overview />
+          element: <Overview />,
         },
 
         {
           path: "add-details",
-          element: <Adddetails />
+          element: <Adddetails />,
         },
 
         {
           path: "product-details",
-          element: <ProductDetails />
-        }
-      ]
-    }
+          element: <ProductDetails />,
+        },
 
-  ])
+        {
+          path: "ads",
+          element: <Ads />,
+        },
+        {
+          path: "reports",
+          element: <Reports />,
+        },
+
+        {
+          path: "settings",
+          element: <Settings />,
+        },
+        {
+          path: "alerts",
+          element: <Alerts />,
+        },
+
+        {
+          path: "verify",
+          element: <Verify />,
+        },
+      ],
+    },
+  ]);
 
   return (
-    <RouterProvider router={routter} />
-  )
-
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
+      <RouterProvider router={routter} />
+    </>
+  );
 }
 
-export default App
+export default App;
