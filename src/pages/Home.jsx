@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import pic from "../pages/images/bg.webp";
+import TypewriterComponent from "typewriter-effect";
 
 function Home() {
   return (
@@ -19,7 +20,7 @@ function Home() {
         {/* Text Section */}
         <div className="lg:w-1/2 w-full pr-0 lg:pr-10 mb-10 lg:mb-0">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 leading-tight mb-4">
-            Advertising and Monetization Platform for Advertisers and Publishers
+            Advertising and Monetization Platform for Advertisers
           </h1>
           <p className="text-base lg:text-lg text-gray-600 mb-6 leading-relaxed">
             Adport is a self-serve advertising network that offers 360º
