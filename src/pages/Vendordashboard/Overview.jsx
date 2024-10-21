@@ -1,9 +1,8 @@
 import React from 'react'
+import GetAdverts from './GetAddverts'
 
 function Overview() {
-  return (
-    <div>Overview goes here</div>
-  )
+  return <GetAdverts/>
 }
 
 export default Overview
