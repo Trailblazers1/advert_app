@@ -5,6 +5,9 @@ import pic from "../pages/images/bg.webp";
 import TypewriterComponent from "typewriter-effect";
 
 function Home() {
+
+
+
   return (
     <div
       className="min-h-screen overflow-x-hidden pt-20"

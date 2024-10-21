@@ -58,8 +58,13 @@ function App() {
         },
 
         {
+
           path: "advert-details",
           element: <AdvertDetail />,
+=======
+          path: "adds/:id",
+          element: <AdvertDetail/>,
+
         },
 
         {
