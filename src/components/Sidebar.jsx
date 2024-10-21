@@ -17,7 +17,7 @@ const Sidebar = () => {
   const vendor = {
     name: "Abugre A",
     profilePicture:
-      "https://citinewsroom.com/wp-content/uploads/2021/12/Daniel-Abugre-Anyorigya--e1638991555793.jpg", // Placeholder image URL; replace with vendor's actual profile picture URL
+      "", // Placeholder image URL; replace with vendor's actual profile picture URL
   };
 
   const handleLogout = () => {};

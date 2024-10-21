@@ -1,12 +1,16 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import backgroundImg from "../pages/images/bg.jpg";
 
 const ContactUs = () => {
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-6 pt-28">
+      <div
+        className="relative w-full h-screen bg-cover bg-center min-h-screen flex items-center justify-center p-6 pt-28"
+        style={{ backgroundImage: `url('${backgroundImg}')` }}
+      >
         <div className="bg-white shadow-lg rounded-lg p-8 md:w-2/3 lg:w-1/2 w-full animate-fadeIn">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-8 animate-slideInUp">
             Get in Touch
