@@ -4,9 +4,10 @@ import './App.css'
 import Home from './pages/Home'
 import DashboardLayouts from './layouts/DashboardLayouts'
 import Overview from './pages/Vendordashboard/Overview'
-import Adddetails from './pages/Vendordashboard/Adddetails'
+import AddAdverts from './pages/Vendordashboard/Adddetails'
 import ProductDetails from './pages/Vendordashboard/ProductDetails'
 import About from './pages/About'
+import GetAdverts from './pages/Vendordashboard/GetAddverts'
 
 
 function App() {
@@ -26,13 +27,13 @@ function App() {
       element: <DashboardLayouts />,
       children: [
         {
-          index: true,
+          index: "true",
           element: <Overview />
         },
 
         {
-          path: "add-details",
-          element: <Adddetails />
+          path: "add-adverts",
+          element: <AddAdverts/>
         },
 
         {
