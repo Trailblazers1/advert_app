@@ -9,7 +9,6 @@ import {
   FaUserCheck,
   FaSignOutAlt,
 } from "react-icons/fa";
-import pic from "../assets/images/Abu.jpg";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
