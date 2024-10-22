@@ -9,8 +9,10 @@ function GetAdverts() {
 
     const getAdds = async () => {
         const response = await apiGetAdverts()
+
         // axios.get(`${import.meta.env.VITE_BASE_URL}/todos?,limit=0`);
         setAdds(response.data)
+        console.log(response.data)
     }
 
     useEffect(() => {
@@ -22,11 +24,12 @@ function GetAdverts() {
             <div>
                 {
                     adds.map((add) => {
-                        return <Link to={`/${add._id}`}>
+                        return <Link to={`adds/${add.id}`}>
                             <AddbookTile title={add.title}
                                 icon={add.icon}
-                            //  description={add.description}
-                            // price={add.price} category={add.category} 
+                              description={add.description}
+                              price={add.price} 
+                              category={add.category} 
                             />
                         </Link>
 
