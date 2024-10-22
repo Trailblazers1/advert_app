@@ -47,7 +47,7 @@ function Home() {
           </h1>
           <p className="text-base lg:text-lg text-gray-600 mb-6 leading-relaxed">
             Adport is a self-serve advertising network that offers 360º
-            monetization solutions for publishers, and high-quality traffic to
+            monetization solutions and high-quality traffic to
             performance-oriented advertisers. Start earning more money through a
             multi-format (Push Notifications, Pops, In-Page Push, Direct Links,
             Interstitials, and Rich Media) performance-driven advertising
