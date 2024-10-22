@@ -15,7 +15,7 @@ import Reports from "./pages/Vendordashboard/Reports";
 import Overview from "./pages/Vendordashboard/Overview";
 import AdvertDetail from "./pages/Vendordashboard/AdvertDetail";
 import ContactUs from "./pages/ContactUs";
-
+import AuthForm from "./pages/authForm";
 
 function App() {
   const routter = createBrowserRouter([
@@ -39,6 +39,11 @@ function App() {
     },
 
     {
+      path: "/authForm",
+      element: <AuthForm />,
+    },
+
+    {
       path: "/dashboard",
       element: <DashboardLayouts />,
       children: [
@@ -49,12 +54,17 @@ function App() {
 
         {
           path: "add-adverts",
-          element: <AddAdverts/>,
+          element: <AddAdverts />,
         },
 
         {
+
+          path: "advert-details",
+          element: <AdvertDetail />,
+=======
           path: "adds/:id",
           element: <AdvertDetail/>,
+
         },
 
         {
