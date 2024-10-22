@@ -15,7 +15,7 @@ const Sidebar = () => {
 
   // Simulating vendor data (in a real app, you'd fetch this from the backend)
   const vendor = {
-    name: "Abugre A",
+    name: "",
     profilePicture:
       "", // Placeholder image URL; replace with vendor's actual profile picture URL
   };
