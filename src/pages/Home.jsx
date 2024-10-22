@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import pic from "../pages/images/bg.webp";
+import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import { apiGetAdverts } from "../services/product";
@@ -31,7 +32,7 @@ function Home() {
   return (
     <div
       className="min-h-screen overflow-x-hidden pt-20"
-      style={{ backgroundColor: "#f0f0f0" }}
+      style={{ backgroundColor: "#E5EDE9" }}
     >
       {/* Sticky Navbar */}
       <div className="sticky top-0 z-50">
@@ -99,14 +100,14 @@ function Home() {
             <div>
                 {
                     homeadds.map((homeadd) => {
-                        // return <Link to={`adds/${add.id}`}>
-                            <AddbookTile title={homeadd.title}
+                         return <Link to={`homeadds/${homeadd.id}`}>
+                          return  <AddbookTile title={homeadd.title}
                                 icon={homeadd.icon}
                               description={homeadd.description}
                               price={homeadd.price} 
                               category={homeadd.category} 
                             />
-                        // </Link>
+                         </Link>
 
                     }
 
