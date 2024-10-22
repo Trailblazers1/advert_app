@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google"; // Add this for Google auth
@@ -7,117 +7,39 @@ import AppleLogin from "react-apple-login"; // Add this for Apple auth
 import axios from "axios"; // Assuming you are using axios for API calls
 
 const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" })); // Clear error on change
-  };
-
-  const validate = () => {
-    const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Email is invalid";
-    }
-
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
-
-    if (!isLogin && formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (validate()) {
-      try {
-        const { email, password } = formData;
-        if (isLogin) {
-          // Perform login with API
-          const response = await axios.post("/api/auth/login", {
-            email,
-            password,
-          });
-          console.log("Login successful:", response.data);
-          navigate("/"); // Navigate to homepage after successful login
-        } else {
-          // Perform sign-up with API
-          const response = await axios.post("/api/auth/signup", {
-            email,
-            password,
-          });
-          console.log("Sign up successful with:", response.data);
-          navigate("/"); // Navigate to homepage after successful sign-up
-        }
-      } catch (error) {
-        console.error(
-          "Authentication error:",
-          error.response?.data || error.message
-        );
-        setErrors((prev) => ({
-          ...prev,
-          general:
-            error.response?.data?.message ||
-            "An error occurred during authentication",
-        }));
-      }
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate;
+  const handleSubmit = async (event) => {
+    e.preventDefault(); //prevent the page from reloading
+    //
+    try {
+      // prepare data to be sent to the backend
+      const formData = new FormData(event.target); //helps get data from the form
+      const name = formData.get("name");
+      const email = formData.get("email");
+      const password = formData.get("password");
+      const role = formData.get("role");
+      //data validation
+      //console.log("name, name")
+      const payload = {
+        name: name,
+        email: email,
+        password: password,
+        role: role,
+      }; //if key and value are the same, you can just use one
+      //const payload = {name,email,password,role:"vendor"}; just one name
+      const response = await apiSignup(payload);
+      console.log(response.data);
+      //Toast sucess
+      navigate("/dashboard");
+    } catch (error) {
+      //toast /console.log
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
-
-  const handleGoogleLoginSuccess = (credentialResponse) => {
-    console.log("Google Login Success:", credentialResponse);
-    // Send the credential to your backend for verification
-    axios
-      .post("/api/auth/google", { token: credentialResponse.credential })
-      .then((response) => {
-        console.log("Google login response:", response.data);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Google login error:", error);
-        setErrors((prev) => ({
-          ...prev,
-          general: "Google login failed",
-        }));
-      });
-  };
-
-  const handleAppleLoginSuccess = (response) => {
-    console.log("Apple Login Success:", response);
-    // Send the response to your backend for verification
-    axios
-      .post("/api/auth/apple", { token: response.authorization.id_token })
-      .then((response) => {
-        console.log("Apple login response:", response.data);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Apple login error:", error);
-        setErrors((prev) => ({
-          ...prev,
-          general: "Apple login failed",
-        }));
-      });
-  };
+  // };
 
   return (
     <div>
@@ -125,7 +47,7 @@ const AuthForm = () => {
       <div className="flex items-center justify-center min-h-screen bg-gray-100 pt-20">
         <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
           <h2 className="text-2xl font-bold text-center">
-            {isLogin ? "Login" : "Sign Up"}
+            {/* {isLogin ? "Login" : "Sign Up"} */}
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -135,16 +57,11 @@ const AuthForm = () => {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
+                // value={formData.email}
+                // onChange={handleChange}
                 required
-                className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring ${
-                  errors.email ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring  }`}
               />
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
@@ -153,51 +70,27 @@ const AuthForm = () => {
               <input
                 type="password"
                 name="password"
-                value={formData.password}
-                onChange={handleChange}
                 required
-                className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring ${
-                  errors.password ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring `}
               />
-              {errors.password && (
-                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
-              )}
             </div>
-            {!isLogin && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring ${
-                    errors.confirmPassword
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  }`}
-                />
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.confirmPassword}
-                  </p>
-                )}
-              </div>
-            )}
-            {errors.general && (
-              <p className="mt-1 text-sm text-red-600 text-center">
-                {errors.general}
-              </p>
-            )}
+            {/* {!isLogin &&  */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                name="confirmPassword"
+                required
+                className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring`}
+              />
+            </div>
             <button
               type="submit"
               className="w-full px-4 py-2 font-semibold text-white bg-indigo-600 rounded-md hover:bg-[#E56F47] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
             >
-              {isLogin ? "Login" : "Sign Up"}
+              {/* {isLogin ? "Login" : "Sign Up"} */}
             </button>
           </form>
 
@@ -205,18 +98,18 @@ const AuthForm = () => {
           <div className="mt-4 text-center">
             <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
               <GoogleLogin
-                onSuccess={handleGoogleLoginSuccess}
+                // onSuccess={handleGoogleLoginSuccess}
                 onError={() => console.log("Google login error")}
               />
             </GoogleOAuthProvider>
-
+            {/* 
             <AppleLogin
               clientId="YOUR_APPLE_CLIENT_ID"
               redirectURI="YOUR_REDIRECT_URI"
               responseType={"id_token"}
               responseMode={"form_post"}
               usePopup={true}
-              onSuccess={handleAppleLoginSuccess}
+              // onSuccess={handleAppleLoginSuccess}
               onError={(error) => console.error("Apple login error:", error)}
               render={(props) => (
                 <button
@@ -226,15 +119,16 @@ const AuthForm = () => {
                   Sign in with Apple
                 </button>
               )}
-            />
+            /> */}
           </div>
 
           <div className="text-center">
             <button
-              onClick={() => setIsLogin(!isLogin)}
+              // onClick={() => setIsLogin(!isLogin)}
               className="text-indigo-600 hover:text-indigo-800"
             >
-              {isLogin ? "Create an account" : "Already have an account? Login"}
+              {/* {isLogin ? "Create an account" : "Already have an account? Login"} */}
+              {loading ? "Loading..." : "Register"}
             </button>
           </div>
         </div>
