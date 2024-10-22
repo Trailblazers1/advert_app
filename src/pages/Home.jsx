@@ -2,8 +2,25 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import pic from "../pages/images/bg.webp";
+import { useState, useEffect } from "react";
+import { apiGetAdverts } from "../services/product";
+import AddbookTile from "./Vendordashboard/GetTiles";
+
 
 function Home() {
+    const [homeadds, setHomeadds] = useState([]);
+
+    const getAdds = async () => {
+         const response = await apiGetAdverts()
+
+        //  axios.get(`${import.meta.env.VITE_BASE_URL}/adverts?,limit=0`);
+        setHomeadds(response.data)
+        console.log(response.data)
+    }
+
+    useEffect(() => {
+        getAdds();
+    }, [])
 
 
 
@@ -72,6 +89,27 @@ function Home() {
           </div>
         </div>
       </div>
+
+      <div>
+            <h1>ALL ADVERTS</h1>
+            <div>
+                {
+                    homeadds.map((homeadd) => {
+                        // return <Link to={`adds/${add.id}`}>
+                            <AddbookTile title={homeadd.title}
+                                icon={homeadd.icon}
+                              description={homeadd.description}
+                              price={homeadd.price} 
+                              category={homeadd.category} 
+                            />
+                        // </Link>
+
+                    }
+
+                    )
+                }
+            </div>
+        </div>
 
       <Footer />
     </div>
