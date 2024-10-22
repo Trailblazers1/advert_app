@@ -30,7 +30,7 @@ const AdvertDetail = () => {
       setBookDetail(response.data);
       setEditedBook({
         title: response.data.title,
-        icon: response.data.icon,
+        // icon: response.data.icon,
        description : response.data.description,
         Category: response.data.category,
         Price: response.data.price,
