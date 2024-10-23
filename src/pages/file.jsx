@@ -9,7 +9,7 @@ const VendorRegisterForm =() => {
         event.preventDefault()  //prevent the page from reloading
     try {
         setLoading(true)
-        //prepare data to thr sent backend
+        //prepare data to the sent backend
         const formData = new FormData(event.target)
         //populating the empty object for the payload variable
         const firstName = formData.get("firstname")
