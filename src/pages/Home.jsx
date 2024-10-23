@@ -5,7 +5,6 @@ import pic from "../pages/images/bg.webp";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { apiGetAdverts } from "../services/product";
-import AddbookTile from "./Vendordashboard/GetTiles";
 import TypewriterComponent from "typewriter-effect";
 
 function Home() {
@@ -61,7 +60,7 @@ function Home() {
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row justify-between items-center mx-auto mt-20 mb-10 max-w-[95%]">
         {/* Text Section */}
-        <div className="lg:w-1/2 w-full pr-0 lg:pr-10 mb-10 lg:mb-0">
+        <div className="lg:w-1/2 w-full pr-0 lg:pr-10 mb-10 lg:mb-0 text-2xl font-bold">
           <TypewriterComponent
             options={{
               strings: [
@@ -139,10 +138,11 @@ function Home() {
           >
             <div className="flex items-center space-x-4">
               <img
-                src={homeadd.icon}
+                src={`https://savefiles.org/${homeadd.icon}?shareable_link=437`}
                 alt={homeadd.title}
                 className="w-12 h-12 rounded-full object-cover"
               />
+
               <div>
                 <h3 className="text-lg font-bold text-gray-800">
                   {homeadd.title}
