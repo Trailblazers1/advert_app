@@ -16,6 +16,7 @@ import Overview from "./pages/Vendordashboard/Overview";
 import AdvertDetail from "./pages/Vendordashboard/AdvertDetail";
 import ContactUs from "./pages/ContactUs";
 import AuthForm from "./pages/authForm";
+import UserAddDetails from "./pages/userdashboard/UserAddDetail";
 
 function App() {
   const routter = createBrowserRouter([
@@ -44,6 +45,11 @@ function App() {
     },
 
     {
+      path: "homeadds/:id",
+      element: <UserAddDetails/>
+    },
+
+    {
       path: "/dashboard",
       element: <DashboardLayouts />,
       children: [
@@ -62,10 +68,17 @@ function App() {
           element: <AdvertDetail />,
 
 
+          path: "adds/:id",
+          element: <AdvertDetail/>,
+
+
+
           
           path: "adds/:id",
           element: <AdvertDetail />,
         },
+
+       
 
         {
           path: "ads",

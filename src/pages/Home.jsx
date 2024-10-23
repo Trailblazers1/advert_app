@@ -2,16 +2,37 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import pic from "../pages/images/bg.webp";
+import { Link } from "react-router-dom";
+
+import { useState, useEffect } from "react";
+import { apiGetAdverts } from "../services/product";
+import AddbookTile from "./Vendordashboard/GetTiles";
+
+
 import TypewriterComponent from "typewriter-effect";
 
+
 function Home() {
+    const [homeadds, setHomeadds] = useState([]);
+
+    const getAdds = async () => {
+         const response = await apiGetAdverts()
+
+        //  axios.get(`${import.meta.env.VITE_BASE_URL}/adverts?,limit=0`);
+        setHomeadds(response.data)
+        console.log(response.data)
+    }
+
+    useEffect(() => {
+        getAdds();
+    }, [])
 
 
 
   return (
     <div
       className="min-h-screen overflow-x-hidden pt-20"
-      style={{ backgroundColor: "#f0f0f0" }}
+      style={{ backgroundColor: "#E5EDE9" }}
     >
       {/* Sticky Navbar */}
       <div className="sticky top-0 z-50">
@@ -27,7 +48,7 @@ function Home() {
           </h1>
           <p className="text-base lg:text-lg text-gray-600 mb-6 leading-relaxed">
             Adport is a self-serve advertising network that offers 360º
-            monetization solutions for publishers, and high-quality traffic to
+            monetization solutions and high-quality traffic to
             performance-oriented advertisers. Start earning more money through a
             multi-format (Push Notifications, Pops, In-Page Push, Direct Links,
             Interstitials, and Rich Media) performance-driven advertising
@@ -73,6 +94,27 @@ function Home() {
           </div>
         </div>
       </div>
+
+      <div>
+            <h1>ALL ADVERTS</h1>
+            <div>
+                {
+                    homeadds.map((homeadd) => {
+                         return <Link to={`homeadds/${homeadd.id}`}>
+                          return  <AddbookTile title={homeadd.title}
+                                icon={homeadd.icon}
+                              description={homeadd.description}
+                              price={homeadd.price} 
+                              category={homeadd.category} 
+                            />
+                         </Link>
+
+                    }
+
+                    )
+                }
+            </div>
+        </div>
 
       <Footer />
     </div>

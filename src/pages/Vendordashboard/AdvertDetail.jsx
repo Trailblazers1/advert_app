@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 // import { BASE_URL } from "../../constants";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Category, Description } from "@mui/icons-material";
+import { Category, Description, } from "@mui/icons-material";
 
 const AdvertDetail = () => {
   const params = useParams();
@@ -23,19 +23,21 @@ const AdvertDetail = () => {
     Category: ""
   });
 
+  console.log('book', editedBook)
   // Fetch book details
   useEffect(() => {
     const fetchBook = async () => {
       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`);
       setBookDetail(response.data);
-      setEditedBook({
-        title: response.data.title,
-        icon: response.data.icon,
-       description : response.data.description,
-        Category: response.data.category,
-        Price: response.data.price,
+      console.log('ressss', response)
+      // setEditedBook({
+      //   title: response.data.title,
+      //   // icon: response.data.icon,
+      //  description : response.data.description,
+      //   Category: response.data.category,
+      //   Price: response.data.price,
         
-      }); // Pre-fill the edit form with existing data
+      // }); // Pre-fill the edit form with existing data
     };
     fetchBook();
   }, [bookId]);
@@ -43,7 +45,7 @@ const AdvertDetail = () => {
   // Delete book function
   const deleteBook = async () => {
     try {
-      await axios.delete(`${import.meta.env.VITE_BASE_URL}/todos ${bookId}`);
+      await axios.delete(`${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`);
       setFeedbackMessage("Advert deleted successfully!");
       setTimeout(() => navigate("/"), 2000); // Redirect after 2 seconds
     } catch (error) {
@@ -51,17 +53,34 @@ const AdvertDetail = () => {
     }
   };
 
-  // Update book function
-  const updateBook = async () => {
-    try {
-      await axios.patch(`${import.meta.env.VITE_BASE_URL}/todos`, editedBook);
-      setFeedbackMessage("Book updated successfully!");
-      setTimeout(() => setFeedbackMessage(""), 2000); // Clear message after 2 seconds
-      setIsEditing(false); // Exit edit mode after successful update
-    } catch (error) {
-      setFeedbackMessage("Failed to update book.");
+
+    const updateAdvert = async (event) =>{
+        event.preventDefault();
+       
+       try {
+        const formData = new FormData(event.target)
+        const data = await axios.patch(`${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`, formData)
+        console.log('hyff', formData, data)
+        setFeedbackMessage("Book updated successfully!");
+        setTimeout(() => setFeedbackMessage(""), 2000);
+       } catch (error) {
+        setFeedbackMessage("Failed to update book.");
+       }
     }
-  };
+  
+  // Update book function
+  // const updateBook = async () => {
+  //   try {
+
+      
+  //     await axios.patch(`${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`, editedBook);
+  //     setFeedbackMessage("Book updated successfully!");
+  //     setTimeout(() => setFeedbackMessage(""), 2000); // Clear message after 2 seconds
+  //     setIsEditing(false); // Exit edit mode after successful update
+  //   } catch (error) {
+  //     setFeedbackMessage("Failed to update book.");
+  //   }
+  // };
 
   // Handle form input change
   const handleInputChange = (e) => {
@@ -87,7 +106,41 @@ const AdvertDetail = () => {
             // Edit form
             <div>
               <h1 className="font-bold text-xl mb-2">Edit Book</h1>
-              <input
+
+              {/* <form className='grid justify-center' onSubmit={updateAdvert}>
+        <input className='border-2 w-[50vw]' type="text" placeholder='enter your title' required name='title' />
+         <input className='border-2' type="text" placeholder='enter your description' required name='description' />
+        <input className='border-2' type="text" placeholder='enter your price' required name='price' />
+        <input className='border-2' type="text" placeholder='enter your category' required name='category'/> 
+        <input className='border-2' type="file"  required name='icon' />
+        <button className='border-2' type="submit">submit</button>
+    </form> */}
+
+<div>
+  <h1 className="font-bold text-xl mb-2">Edit Book</h1>
+
+  <form className='grid justify-center' onSubmit={updateAdvert}>
+    <input className='border-2 w-[50vw] mb-4 p-2' type="text" placeholder='Enter your title' required name='title' />
+    <input className='border-2 mb-4 p-2' type="text" placeholder='Enter your description' required name='description' />
+    <input className='border-2 mb-4 p-2' type="text" placeholder='Enter your price' required name='price' />
+
+    {/* Dropdown for Category */}
+    <select className='border-2 mb-4 p-2' required name='category'>
+      <option value="">Select a category</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Non-Fiction">Non-Fiction</option>
+      <option value="Science">Science</option>
+      <option value="History">History</option>
+      <option value="Technology">Technology</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <input className='border-2 mb-4 p-2' type="file" required name='icon' />
+    <button className='border-2 bg-blue-500 text-white p-2' type="submit">Submit</button>
+  </form>
+</div>
+
+              {/* <input
                 type="text"
                 name="title"
                 value={editedBook.title}
@@ -98,26 +151,26 @@ const AdvertDetail = () => {
                <input
                 type="text"
                 name="decription"
-                value={editedBook.author}
+                value={editedBook.description}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
                 placeholder="decription"
               />
               <textarea
                 name="category"
-                value={editedBook.summary}
+                value={editedBook.Category}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
                 placeholder="category"
               />
-              <input
+               <input
                 type="text"
                 name="price"
-                value={editedBook.year}
+                value={editedBook.Price}
                 onChange={handleInputChange}
                 className="border p-2 mb-2 w-full"
                 placeholder="price"
-              />
+              />  */}
               {/* <input
                 type="text"
                 name="genre"
@@ -134,12 +187,12 @@ const AdvertDetail = () => {
                 placeholder="Content"
               />  */}
               <div className="flex space-x-4">
-                <button
-                  onClick={updateBook}
+                {/* <button
+                  onClick={updateAdvert}
                   className="bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700"
                 >
                   Update
-                </button>
+                </button> */}
                 <button
                   onClick={() => setIsEditing(false)}
                   className="bg-gray-600 text-white font-bold py-2 px-4 rounded hover:bg-gray-700"

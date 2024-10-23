@@ -10,7 +10,7 @@ const AuthForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate;
   const handleSubmit = async (event) => {
-    e.preventDefault(); //prevent the page from reloading
+    event.preventDefault(); //prevent the page from reloading
     //
     try {
       // prepare data to be sent to the backend
@@ -50,6 +50,20 @@ const AuthForm = () => {
             {/* {isLogin ? "Login" : "Sign Up"} */}
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
+
+          <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Full Name
+              </label>
+              <input
+                type="name"
+                name="name"
+                // value={formData.email}
+                // onChange={handleChange}
+                required
+                className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring  }`}
+              />
+            </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Email
@@ -77,11 +91,11 @@ const AuthForm = () => {
             {/* {!isLogin &&  */}
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Confirm Password
+                Role
               </label>
               <input
-                type="password"
-                name="confirmPassword"
+                type="role"
+                name="role"
                 required
                 className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring`}
               />
@@ -89,7 +103,7 @@ const AuthForm = () => {
             <button
               type="submit"
               className="w-full px-4 py-2 font-semibold text-white bg-indigo-600 rounded-md hover:bg-[#E56F47] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-            >
+            > sign in
               {/* {isLogin ? "Login" : "Sign Up"} */}
             </button>
           </form>

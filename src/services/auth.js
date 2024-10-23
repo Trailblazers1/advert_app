@@ -1,11 +1,8 @@
-import { apiClient } from "./config";
+import { apiClient } from "./config"
 
 
 
-export const apiSignup = async (payload) => {
-  return await apiClient.post("/users/signup", payload);
-};
+export const apiSignup = async(payload) => {
+  return await apiClient.post("/users/register", payload)
+}
 
-// implicit return for login
-export const apiLogin = async payload =>
-    apiClient.post("/users/login", payload);
