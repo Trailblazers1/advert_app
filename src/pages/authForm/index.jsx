@@ -9,6 +9,7 @@ import axios from "axios"; // Assuming you are using axios for API calls
 const AuthForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate;
+  const [role, setRole] = useState("vendor"); // State to store the selected role
   const handleSubmit = async (event) => {
     event.preventDefault(); //prevent the page from reloading
     //
@@ -46,11 +47,11 @@ const AuthForm = () => {
       <Navbar />
       <div className="flex items-center justify-center min-h-screen bg-gray-100 pt-20">
         <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-center"></h2>
+        <h2 className="text-2xl font-bold text-center">Vendor Signup</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Full Name
+                Name
               </label>
               <input
                 type="name"
@@ -85,13 +86,28 @@ const AuthForm = () => {
                 className={`mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring `}
               />
             </div>
+            {/* Role Dropdown */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Role
+              </label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                name="role"
+                className="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring"
+              >
+                <option value="vendor">Vendor</option>
+                <option value="user">User</option>
+              </select>
+            </div>
 
             <button
               type="submit"
               className="w-full px-4 py-2 font-semibold text-white bg-indigo-600 rounded-md hover:bg-[#E56F47] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
             >
               {/* {" "} */}
-              
+
               {loading ? "Loading..." : "Register"}
             </button>
           </form>
@@ -107,9 +123,7 @@ const AuthForm = () => {
           </div>
 
           <div className="text-center">
-            <button className="text-indigo-600 hover:text-indigo-800">
-              
-            </button>
+            <button className="text-indigo-600 hover:text-indigo-800"></button>
           </div>
         </div>
       </div>

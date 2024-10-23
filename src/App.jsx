@@ -17,6 +17,8 @@ import AdvertDetail from "./pages/Vendordashboard/AdvertDetail";
 import ContactUs from "./pages/ContactUs";
 import AuthForm from "./pages/authForm";
 import UserAddDetails from "./pages/userdashboard/UserAddDetail";
+import VendorLogin from "./pages/vendorLogin/login";
+import ForgotPassword from "./pages/forgotPassword";
 
 function App() {
   const routter = createBrowserRouter([
@@ -44,9 +46,18 @@ function App() {
       element: <AuthForm />,
     },
 
+    { path: "/vendorLogin", 
+      element: <VendorLogin />,
+    },
+
+    {
+      path: "/forgotPassword",
+      element: <ForgotPassword/>,
+    },
+
     {
       path: "homeadds/:id",
-      element: <UserAddDetails/>
+      element: <UserAddDetails />,
     },
 
     {
@@ -67,18 +78,12 @@ function App() {
           path: "advert-details",
           element: <AdvertDetail />,
 
-
           path: "adds/:id",
-          element: <AdvertDetail/>,
+          element: <AdvertDetail />,
 
-
-
-          
           path: "adds/:id",
           element: <AdvertDetail />,
         },
-
-       
 
         {
           path: "ads",
