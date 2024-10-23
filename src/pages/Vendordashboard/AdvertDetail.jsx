@@ -107,14 +107,39 @@ const AdvertDetail = () => {
             <div>
               <h1 className="font-bold text-xl mb-2">Edit Book</h1>
 
-              <form className='grid justify-center' onSubmit={updateAdvert}>
+              {/* <form className='grid justify-center' onSubmit={updateAdvert}>
         <input className='border-2 w-[50vw]' type="text" placeholder='enter your title' required name='title' />
          <input className='border-2' type="text" placeholder='enter your description' required name='description' />
         <input className='border-2' type="text" placeholder='enter your price' required name='price' />
         <input className='border-2' type="text" placeholder='enter your category' required name='category'/> 
         <input className='border-2' type="file"  required name='icon' />
         <button className='border-2' type="submit">submit</button>
-    </form>
+    </form> */}
+
+<div>
+  <h1 className="font-bold text-xl mb-2">Edit Book</h1>
+
+  <form className='grid justify-center' onSubmit={updateAdvert}>
+    <input className='border-2 w-[50vw] mb-4 p-2' type="text" placeholder='Enter your title' required name='title' />
+    <input className='border-2 mb-4 p-2' type="text" placeholder='Enter your description' required name='description' />
+    <input className='border-2 mb-4 p-2' type="text" placeholder='Enter your price' required name='price' />
+
+    {/* Dropdown for Category */}
+    <select className='border-2 mb-4 p-2' required name='category'>
+      <option value="">Select a category</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Non-Fiction">Non-Fiction</option>
+      <option value="Science">Science</option>
+      <option value="History">History</option>
+      <option value="Technology">Technology</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <input className='border-2 mb-4 p-2' type="file" required name='icon' />
+    <button className='border-2 bg-blue-500 text-white p-2' type="submit">Submit</button>
+  </form>
+</div>
+
               {/* <input
                 type="text"
                 name="title"
