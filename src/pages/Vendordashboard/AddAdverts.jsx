@@ -1,38 +1,41 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddAdverts = () => {
   const [feedbackMessage, setFeedbackMessage] = useState(null); // State to store feedback message
   const [isError, setIsError] = useState(false); // State to track error status
+  const navigate = useNavigate();
 
   const saveAdvert = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
     try {
-
       // Post the form data
-     const res =  await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData);
-     console.log('gyg', res)
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/adverts`,
+        formData
+      );
+      // console.log("gyg", res);
+      // setFeedbackMessage("Advert added successfully!");
+      // setIsError(false); // Clear error state on success
+      // navigate("/dashboard");
       setFeedbackMessage("Advert added successfully!");
-      setIsError(false); // Clear error state on success
-
-    //   const formData = new FormData(event.target)
-    //  axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
-
+      setTimeout(() => {
+        setIsSubmitting(false);
+        navigate("/dashboard");
+      }, 2000);
+      //   const formData = new FormData(event.target)
+      //  axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
     } catch (error) {
       setFeedbackMessage("Failed to add advert. Please try again.");
       setIsError(true); // Set error state
     }
 
-
     // Clear feedback message after a delay
     setTimeout(() => setFeedbackMessage(null), 5000);
   };
-
-   
-
-
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12">
