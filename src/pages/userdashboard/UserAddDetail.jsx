@@ -44,7 +44,7 @@ const UserAddDetails = () => {
           <img
             src={`https://savefiles.org/${bookDetail.icon}?shareable_link=437`}
             alt={bookDetail.title}
-            className="w-[90vw] lg:w-[50vw] rounded-lg object-cover"
+            className="w-[50vw] h-[50vh] rounded-lg object-cover mt-20"
           />
   
           {/* Book Details */}
@@ -64,6 +64,7 @@ const UserAddDetails = () => {
       <Footer />
     </div>
   );
+  
   
 };
 

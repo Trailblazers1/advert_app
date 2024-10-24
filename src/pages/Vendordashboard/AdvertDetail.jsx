@@ -13,14 +13,7 @@ const AdvertDetail = () => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
 
-  useEffect(() => {
-    const fetchBook = async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`
-      );
-      setBookDetail(response.data);
-    };
-
+ 
   // Fetch book details
   const fetchBook = async () => {
     const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`);
