@@ -141,13 +141,13 @@ function Home() {
                 alt={homeadd.title}
                 className="w-full h-40 object-cover rounded-md"
               />
-              {/* Title */}
+              
               <h3 className="text-lg font-bold text-gray-800">{homeadd.title}</h3>
-              {/* Category */}
+              Category
               <p className="text-sm text-gray-600">{homeadd.category}</p>
-              {/* Description */}
+              
               <p className="text-sm text-gray-600 text-center">{homeadd.description}</p>
-              {/* Price */}
+             
               <span className="block mt-4 text-lg font-semibold text-blue-600">
                 ${homeadd.price}
               </span>
