@@ -8,7 +8,6 @@ import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "./components/Sidebar";
 import Alerts from "./pages/Vendordashboard/Alerts";
-import Ads from "./pages/Vendordashboard/Ads";
 import Verify from "./pages/Vendordashboard/Verify";
 import Settings from "./pages/Vendordashboard/Settings";
 import Reports from "./pages/Vendordashboard/Reports";
@@ -46,13 +45,11 @@ function App() {
       element: <AuthForm />,
     },
 
-    { path: "/vendorLogin", 
-      element: <VendorLogin />,
-    },
+    { path: "/vendorLogin", element: <VendorLogin /> },
 
     {
       path: "/forgotPassword",
-      element: <ForgotPassword/>,
+      element: <ForgotPassword />,
     },
 
     {
@@ -85,10 +82,6 @@ function App() {
           element: <AdvertDetail />,
         },
 
-        {
-          path: "ads",
-          element: <Ads />,
-        },
         {
           path: "reports",
           element: <Reports />,

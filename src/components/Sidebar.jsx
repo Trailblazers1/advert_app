@@ -34,7 +34,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white shadow-xl transform transition-transform duration-300 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-[#56B2E4] text-white shadow-xl transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 z-40`}
       >
@@ -62,10 +62,10 @@ const Sidebar = () => {
           <li>
             <Link
               className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300"
-              to="/dashboard/ads"
+              to="/dashboard/add-adverts"
             >
               <FaAd size={20} />
-              <span>Advertisements</span>
+              <span>Add an Ad</span>
             </Link>
           </li>
           <li>
