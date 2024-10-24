@@ -12,12 +12,12 @@ const AddAdverts = () => {
    
     try {
       const formData = new FormData(event.target)
-    await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
+     axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
     } catch (error) {
       console.log(error)
     }
 
-   }
+   
 
 
   return (
