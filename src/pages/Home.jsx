@@ -17,7 +17,7 @@ function Home() {
     const response = await apiGetAdverts();
     setAdds(response.data);
     setFilteredAdds(response.data); // Initialize filteredAdds
-    console.log(response.data);
+    // console.log(response.data);
   };
 
   useEffect(() => {
@@ -72,7 +72,7 @@ function Home() {
               delay: 75,
             }}
           />
-          <p className="text-base lg:text-lg text-gray-600 mb-6 leading-relaxed">
+          <p className="text-base lg:text-lg text-gray-600 mb-6 leading-relaxed mt-7">
             Adport is a self-serve advertising network that offers 360º
             monetization solutions and high-quality traffic to
             performance-oriented advertisers...
