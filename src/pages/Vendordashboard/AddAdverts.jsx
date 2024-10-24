@@ -12,12 +12,13 @@ const AddAdverts = () => {
     try {
 
       // Post the form data
-      await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData);
+     const res =  await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData);
+     console.log('gyg', res)
       setFeedbackMessage("Advert added successfully!");
       setIsError(false); // Clear error state on success
 
-      const formData = new FormData(event.target)
-     axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
+    //   const formData = new FormData(event.target)
+    //  axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
 
     } catch (error) {
       setFeedbackMessage("Failed to add advert. Please try again.");
