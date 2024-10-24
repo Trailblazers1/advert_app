@@ -1,7 +1,7 @@
 import { apiClient } from "./config"
 
 export const apiGetAdverts = () => {
-  return apiClient.get("/adverts");
+  return apiClient.get("/adverts?limit=0");
 };
 
 
