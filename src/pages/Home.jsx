@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import pic from "../pages/images/bg.webp";
+import pic from "../assets/images/bg1.webp";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { apiGetAdverts } from "../services/product";
@@ -12,6 +12,7 @@ function Home() {
   const [filteredAdds, setFilteredAdds] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [noResults, setNoResults] = useState(false); // State to track no ads found
 
   const getAdds = async () => {
     const response = await apiGetAdverts();
@@ -31,6 +32,13 @@ function Home() {
         add.price.toString().includes(query)
       );
     });
+
+    if (filtered.length === 0) {
+      setNoResults(true); // Set no results if none found
+    } else {
+      setNoResults(false);
+    }
+
     setFilteredAdds(filtered);
     setShowSuggestions(true);
   }, 300);
@@ -99,27 +107,31 @@ function Home() {
 
           {showSuggestions && searchQuery && (
             <ul className="absolute z-10 bg-white border border-gray-300 shadow-md rounded-md mt-2 w-full max-w-[400px]">
-              {filteredAdds.slice(0, 5).map((add, index) => (
-                <li
-                  key={index}
-                  className="p-3 hover:bg-blue-100 cursor-pointer"
-                  onClick={handleAddClick}
-                >
-                  <span className="font-semibold">{add.title}</span> by{" "}
-                  {add.category}
-                </li>
-              ))}
+              {filteredAdds.length > 0 ? (
+                filteredAdds.slice(0, 5).map((add, index) => (
+                  <li
+                    key={index}
+                    className="p-3 hover:bg-blue-100 cursor-pointer"
+                    onClick={handleAddClick}
+                  >
+                    <span className="font-semibold">{add.title}</span> by{" "}
+                    {add.category}
+                  </li>
+                ))
+              ) : (
+                <li className="p-3 text-red-500 text-center">No ad found</li>
+              )}
             </ul>
           )}
         </div>
 
         {/* Image Section */}
         <div className="lg:w-1/2 w-full">
-          <div className="relative overflow-hidden rounded-xl mx-auto">
+          <div className="relative overflow-hidden rounded-xl mx-auto max-w-lg lg:max-w-none shadow-lg">
             <img
               src={pic}
               alt="Adport Background"
-              className="w-full h-full object-cover transform transition-transform duration-500 ease-out hover:scale-105"
+              className="w-full h-full object-cover transform transition-transform duration-500 ease-out hover:scale-105 rounded-lg"
             />
           </div>
         </div>
@@ -141,13 +153,15 @@ function Home() {
                 alt={homeadd.title}
                 className="w-full h-40 object-cover rounded-md"
               />
-              
-              <h3 className="text-lg font-bold text-gray-800">{homeadd.title}</h3>
-              Category
+
+              <h3 className="text-lg font-bold text-gray-800">
+                {homeadd.title}
+              </h3>
               <p className="text-sm text-gray-600">{homeadd.category}</p>
-              
-              <p className="text-sm text-gray-600 text-center">{homeadd.description}</p>
-             
+              <p className="text-sm text-gray-600 text-center">
+                {homeadd.description}
+              </p>
+
               <span className="block mt-4 text-lg font-semibold text-blue-600">
                 ${homeadd.price}
               </span>

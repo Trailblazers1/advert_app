@@ -12,23 +12,23 @@ const AdvertDetail = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
+  // useEffect(() => {
+  //   const fetchBook = async () => {
+  //     const response = await axios.get(
+  //       `${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`
+  //     );
+  //     setBookDetail(response.data);
+  // };
 
-  useEffect(() => {
-    const fetchBook = async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`
-      );
-      setBookDetail(response.data);
-    };
-
-  // Fetch book details
+  // FetchBook details
   const fetchBook = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`);
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/adverts/${bookId}`
+    );
     setBookDetail(response.data);
   };
-  
-  useEffect(() => {
 
+  useEffect(() => {
     fetchBook();
   }, [bookId]);
 
