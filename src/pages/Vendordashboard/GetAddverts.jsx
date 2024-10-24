@@ -11,7 +11,8 @@ function GetAdverts() {
         const response = await apiGetAdverts()
 
         // axios.get(`${import.meta.env.VITE_BASE_URL}/todos?,limit=0`);
-        setAdds(response.data)
+        setAdds(response.data.reverse())
+
         console.log(response.data)
     }
 
