@@ -17,7 +17,6 @@ function Home() {
     const response = await apiGetAdverts();
     setAdds(response.data);
     setFilteredAdds(response.data); // Initialize filteredAdds
-    // console.log(response.data);
   };
 
   useEffect(() => {
@@ -32,7 +31,6 @@ function Home() {
         add.price.toString().includes(query)
       );
     });
-
     setFilteredAdds(filtered);
     setShowSuggestions(true);
   }, 300);
@@ -134,26 +132,26 @@ function Home() {
           <Link
             to={`homeadds/${homeadd.id}`}
             key={homeadd.id}
-            className="relative block p-6 border border-gray-200 rounded-lg shadow-lg bg-white hover:bg-gray-100 transition duration-300"
+            className="relative block p-6 border border-gray-200 rounded-lg shadow-lg bg-white hover:bg-gray-100 transition-transform duration-300 transform hover:scale-105"
           >
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col items-center space-y-4">
+              {/* Icon/Image */}
               <img
                 src={`https://savefiles.org/${homeadd.icon}?shareable_link=437`}
                 alt={homeadd.title}
-                className="w-12 h-12 rounded-full object-cover"
+                className="w-full h-40 object-cover rounded-md"
               />
-
-              <div>
-                <h3 className="text-lg font-bold text-gray-800">
-                  {homeadd.title}
-                </h3>
-                <p className="text-sm text-gray-600">{homeadd.category}</p>
-              </div>
+              {/* Title */}
+              <h3 className="text-lg font-bold text-gray-800">{homeadd.title}</h3>
+              {/* Category */}
+              <p className="text-sm text-gray-600">{homeadd.category}</p>
+              {/* Description */}
+              <p className="text-sm text-gray-600 text-center">{homeadd.description}</p>
+              {/* Price */}
+              <span className="block mt-4 text-lg font-semibold text-blue-600">
+                ${homeadd.price}
+              </span>
             </div>
-            <p className="mt-4 text-sm text-gray-600">{homeadd.description}</p>
-            <span className="absolute bottom-6 right-6 text-lg font-semibold text-blue-600">
-              ${homeadd.price}
-            </span>
           </Link>
         ))}
       </div>

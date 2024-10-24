@@ -9,6 +9,17 @@ const AddAdverts = () => {
     await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData);
   };
 
+   
+    try {
+      const formData = new FormData(event.target)
+    await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
+    } catch (error) {
+      console.log(error)
+    }
+
+   }
+
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12">
       <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-8">
