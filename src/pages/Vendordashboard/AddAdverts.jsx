@@ -5,8 +5,14 @@ const AddAdverts = () => {
 const saveAdvert = async () =>{
     event.preventDefault();
    
-    const formData = new FormData(event.target)
+    try {
+      const formData = new FormData(event.target)
     await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
+    } catch (error) {
+      console.log(error)
+    }
+
+    
 }
 
   return (
