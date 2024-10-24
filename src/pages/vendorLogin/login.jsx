@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"; // Use for navigation after logi
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import React, { useState } from "react";
-import { apiSignin } from "../../services/auth";
+import { apiGetProfile, apiSignin } from "../../services/auth";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google"; // Google auth
 import { ToastContainer, toast } from "react-toastify"; // Toast library
 import "react-toastify/dist/ReactToastify.css"; // Toastify styles
@@ -23,6 +23,9 @@ const VendorLogin = () => {
       if (response.status === 200) {
         // Store token
         localStorage.setItem("token", response.data.accessToken);
+        //get user profile
+        // const ProfileResponse = await apiGetProfile();
+        // console.log(ProfileResponse.data);
 
         // Show success toast
         toast.success("Login successful!");

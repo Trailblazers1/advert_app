@@ -7,6 +7,9 @@ export const apiSignup = async (payload) => {
 export const apiSignin = async (payload) => {
   return await apiClient.post("/users/login", payload);
 };
+export const apiGetProfile = async () => {
+  return await apiClient.post("/users/me");
+};
 
 export const apiForgotPassword = async (payload) => {
   return await apiClient.post("/users/login", payload);

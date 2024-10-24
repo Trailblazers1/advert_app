@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import AddbookTile from './GetTiles';
-import { apiGetAdverts } from '../../services/product';
+import { apiGetAdverts, apiVendorsAdvert } from '../../services/product';
 import { Link } from 'react-router-dom';
 
 function GetAdverts() {
     const [adds, setAdds] = useState([]);
 
     const getAdds = async () => {
-        const response = await apiGetAdverts()
+        const response = await apiVendorsAdvert()
 
         // axios.get(`${import.meta.env.VITE_BASE_URL}/todos?,limit=0`);
         setAdds(response.data.reverse())
