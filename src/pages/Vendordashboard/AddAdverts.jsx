@@ -1,23 +1,36 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 
 const AddAdverts = () => {
+  const [feedbackMessage, setFeedbackMessage] = useState(null); // State to store feedback message
+  const [isError, setIsError] = useState(false); // State to track error status
+
   const saveAdvert = async (event) => {
     event.preventDefault();
-
     const formData = new FormData(event.target);
-    await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData);
+
+    try {
+
+      // Post the form data
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData);
+      setFeedbackMessage("Advert added successfully!");
+      setIsError(false); // Clear error state on success
+
+      const formData = new FormData(event.target)
+     axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
+
+    } catch (error) {
+      setFeedbackMessage("Failed to add advert. Please try again.");
+      setIsError(true); // Set error state
+    }
+
+
+    // Clear feedback message after a delay
+    setTimeout(() => setFeedbackMessage(null), 5000);
   };
 
    
-    try {
-      const formData = new FormData(event.target)
-     axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
-    } catch (error) {
-      console.log(error)
-    }
 
-   
 
 
   return (
@@ -26,6 +39,19 @@ const AddAdverts = () => {
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Add an Advert
         </h1>
+
+        {/* Feedback message */}
+        {feedbackMessage && (
+          <div
+            className={`text-center p-4 mb-4 rounded-lg ${
+              isError
+                ? "bg-red-100 text-red-700"
+                : "bg-green-100 text-green-700"
+            }`}
+          >
+            {feedbackMessage}
+          </div>
+        )}
 
         <form className="space-y-6" onSubmit={saveAdvert}>
           <div>
@@ -71,15 +97,13 @@ const AddAdverts = () => {
               <label className="block text-sm font-medium text-gray-700">
                 Category
               </label>
-              {/* Dropdown for Category */}
               <select className="border-2 mb-4 p-2" required name="category">
                 <option value="">Select a category</option>
-                <option value="Fiction">Fiction</option>
-                <option value="Non-Fiction">Non-Fiction</option>
-                <option value="Science">Science</option>
+                <option value="Fiction">Condoms</option>
+                <option value="Non-Fiction">Pills</option>
+                <option value="Science">Enhancements</option>
                 <option value="History">History</option>
                 <option value="Technology">Technology</option>
-                <option value="Other">Other</option>
               </select>
             </div>
           </div>
