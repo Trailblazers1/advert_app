@@ -10,18 +10,28 @@ const AddAdverts = () => {
     const formData = new FormData(event.target);
 
     try {
+
       // Post the form data
       await axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData);
       setFeedbackMessage("Advert added successfully!");
       setIsError(false); // Clear error state on success
+
+      const formData = new FormData(event.target)
+     axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
+
     } catch (error) {
       setFeedbackMessage("Failed to add advert. Please try again.");
       setIsError(true); // Set error state
     }
 
+
     // Clear feedback message after a delay
     setTimeout(() => setFeedbackMessage(null), 5000);
   };
+
+   
+
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12">
