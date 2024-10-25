@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { apiSignup } from "../../services/auth";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import "react-toastify/dist/ReactToastify.css";
 
 const AuthForm = () => {
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ const AuthForm = () => {
   return (
     <div>
       <Navbar />
-      <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
+      <ToastContainer position="top-left" autoClose={3000} hideProgressBar />
       <div className="flex items-center justify-center min-h-screen bg-gray-100 pt-20">
         <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
           <h2 className="text-2xl font-bold text-center">Vendor Signup</h2>
@@ -96,7 +96,7 @@ const AuthForm = () => {
               className="w-full px-4 py-2 font-semibold text-white bg-indigo-600 rounded-md hover:bg-[#E56F47] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
             >
               {loading ? "Loading..." : "Register"}
-            </button>
+            </button> 
           </form>
           <div className="mt-4 text-center">
             <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
