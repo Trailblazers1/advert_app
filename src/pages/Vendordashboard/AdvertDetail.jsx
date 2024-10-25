@@ -135,12 +135,11 @@ const AdvertDetail = () => {
                   defaultValue={addDetail.category}
                 >
                   <option value="">Select a category</option>
-                  <option value="Fiction">Fiction</option>
-                  <option value="Non-Fiction">Non-Fiction</option>
-                  <option value="Science">Science</option>
-                  <option value="History">History</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Other">Other</option>
+                  <option value="condom">condom</option>
+                  <option value="pills">pills</option>
+                  <option value="enhancements">enhancemts</option>
+                  <option value="lubricants">lubricants</option>
+                
                 </select>
               </div>
 

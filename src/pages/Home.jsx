@@ -158,9 +158,9 @@ function Home() {
                 {homeadd.title}
               </h3>
               <p className="text-sm text-gray-600">{homeadd.category}</p>
-              <p className="text-sm text-gray-600 text-center">
+              {/* <p className="text-sm text-gray-600 text-center">
                 {homeadd.description}
-              </p>
+              </p> */}
 
               <span className="block mt-4 text-lg font-semibold text-blue-600">
                 ${homeadd.price}

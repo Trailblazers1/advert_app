@@ -23,9 +23,8 @@ const AddAdverts = () => {
       // navigate("/dashboard");
       setFeedbackMessage("Advert added successfully!");
       setTimeout(() => {
-        setIsSubmitting(false);
-        navigate("/dashboard"); 
-      }, 2000);
+        navigate("/dashboard");
+       }, 2000);
       //   const formData = new FormData(event.target)
       //  axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
     } catch (error) {
@@ -47,11 +46,10 @@ const AddAdverts = () => {
         {/* Feedback message */}
         {feedbackMessage && (
           <div
-            className={`text-center p-4 mb-4 rounded-lg ${
-              isError
+            className={`text-center p-4 mb-4 rounded-lg ${isError
                 ? "bg-red-100 text-red-700"
                 : "bg-green-100 text-green-700"
-            }`}
+              }`}
           >
             {feedbackMessage}
           </div>
@@ -103,11 +101,11 @@ const AddAdverts = () => {
               </label>
               <select className="border-2 mb-4 p-2" required name="category">
                 <option value="">Select a category</option>
-                <option value="Fiction">Condoms</option>
-                <option value="Non-Fiction">Pills</option>
-                <option value="Science">Enhancements</option>
-                <option value="History">History</option>
-                <option value="Technology">Technology</option>
+                <option value="condoms">Condoms</option>
+                <option value="pills">Pills</option>
+                <option value="Enhancements">Enhancements</option>
+                <option value="lubricants">lubricants</option>
+
               </select>
             </div>
           </div>
