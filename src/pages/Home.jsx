@@ -16,7 +16,7 @@ function Home() {
 
   const getAdds = async () => {
     const response = await apiGetAdverts();
-    setAdds(response.data);
+    setAdds(response.data.reverse());
     setFilteredAdds(response.data); // Initialize filteredAdds
   };
 
@@ -159,7 +159,7 @@ function Home() {
               </h3>
               <p className="text-sm text-gray-600">{homeadd.category}</p>
               {/* <p className="text-sm text-gray-600 text-center">
-                {homeadd.description}
+                {homeadd.description} 
               </p> */}
 
               <span className="block mt-4 text-lg font-semibold text-blue-600">

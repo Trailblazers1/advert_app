@@ -51,7 +51,7 @@ const Sidebar = () => {
           <p className="text-sm text-gray-400">Vendor</p>
         </div>
 
-        <ul className="flex flex-col space-y-6 px-4">
+        <ul className="flex flex-col space-y-4 px-4">
           <li>
             <Link
               className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 hover:text-gray-300 transition-colors duration-300"
