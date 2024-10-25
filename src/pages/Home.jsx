@@ -16,7 +16,7 @@ function Home() {
 
   const getAdds = async () => {
     const response = await apiGetAdverts();
-    setAdds(response.data);
+    setAdds(response.data.reverse());
     setFilteredAdds(response.data); // Initialize filteredAdds
   };
 

@@ -28,7 +28,7 @@ const AdvertDetail = () => {
     try {
       await axios.delete(`${import.meta.env.VITE_BASE_URL}/adverts/${addId}`);
       setFeedbackMessage("Advert deleted successfully!");
-      setTimeout(() => navigate("/"), 2000);
+      setTimeout(() => navigate("/dashboard"), 2000);
     } catch (error) {
       setFeedbackMessage("Failed to delete advert.");
     }
