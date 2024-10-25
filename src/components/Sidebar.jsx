@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaBell,
   FaDollarSign,
@@ -12,15 +12,17 @@ import {
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-
+  const navigate = useNavigate();
   // Simulating vendor data (in a real app, you'd fetch this from the backend)
   const vendor = {
     name: "",
-    profilePicture:
-      "", // Placeholder image URL; replace with vendor's actual profile picture URL
+    profilePicture: "", // Placeholder image URL; replace with vendor's actual profile picture URL
   };
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    window.localStorage.removeItem("token");
+    navigate("/vendorLogin");
+  };
 
   return (
     <>

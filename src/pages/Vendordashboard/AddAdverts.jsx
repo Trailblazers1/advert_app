@@ -24,7 +24,7 @@ const AddAdverts = () => {
       setFeedbackMessage("Advert added successfully!");
       setTimeout(() => {
         setIsSubmitting(false);
-        navigate("/dashboard");
+        navigate("/dashboard"); 
       }, 2000);
       //   const formData = new FormData(event.target)
       //  axios.post(`${import.meta.env.VITE_BASE_URL}/adverts`, formData)
