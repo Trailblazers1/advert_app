@@ -86,16 +86,20 @@ const Navbar = () => {
               {currentTime.toLocaleDateString()} -{" "}
               {currentTime.toLocaleTimeString()}
             </li>
-            <a href="/authForm">
-              <button className="px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-75 transition duration-300">
-                Post Ad
-              </button>
-            </a>
-            <a href="/vendorLogin">
-              <button className="px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-75 transition duration-300">
-                Login
-              </button>
-            </a>
+
+            <Link
+              to="/authForm"
+              className="px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-75 transition duration-300"
+            >
+              Post Ad
+            </Link>
+
+            <Link
+              to="/vendorLogin"
+              className="px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-75 transition duration-300"
+            >
+              Login
+            </Link>
           </ul>
         </div>
 
